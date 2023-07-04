@@ -1,39 +1,10 @@
 <script>
   import Slider from "./Slider.svelte";
 
+  export let data;
+  $:({product, relatedProducts} = data);
 
   let cart = [];
-
-  let product = {
-    id:"svelte-book",
-    name: 'Svelte Guide',
-    price: 3500,
-    images:[
-      "https://github.com/svelte-book/sample-app/raw/main/static/svelte-book-1.png",
-      "https://github.com/svelte-book/sample-app/raw/main/static/svelte-book-2.png",
-      "https://github.com/svelte-book/sample-app/raw/main/static/svelte-book-3.png",
-    ],
-  }
-
-  let releaseProducts = [
-    {
-      id:'react-book',
-      name:'React Book',
-      price: 3500,
-    },
-    {
-      id:'vue-book',
-      name:'Vue Book',
-      price: 4500,
-    },
-    {
-      id:'angular-book',
-      name:'Angular Book',
-      price: 5500,
-    },
-
-  ]
-
   function addToCart(productId){
     cart = [...cart, productId]
   }
@@ -78,7 +49,7 @@
   <fotter>
     <h3>関連商品</h3>
     <ul>
-      {#each releaseProducts as product}
+      {#each relatedProducts as product}
         <li>
           <a href="./products/{product.id}">{product.name}</a> - {product.price}円
         </li>
