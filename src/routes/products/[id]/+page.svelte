@@ -1,10 +1,13 @@
 <script>
+// @ts-nocheck
+
   import Slider from "./Slider.svelte";
 
   export let data;
   $:({product, relatedProducts} = data);
 
   let cart = [];
+  
   function addToCart(productId){
     cart = [...cart, productId]
   }

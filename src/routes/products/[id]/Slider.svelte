@@ -1,5 +1,8 @@
 <script>
-  export let images;
+  /**
+   * @type {string | any[]}
+   */
+   export let images;
 
   let centerIndex = 0;
   $: leftIndex =  (centerIndex - 1 + images.length) % images.length;

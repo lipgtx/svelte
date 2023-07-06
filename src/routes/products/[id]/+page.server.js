@@ -1,5 +1,5 @@
 export async function load({params}){
-  const productId = params.id;
+  const productId = params.id;  // ex. react-book, angular-book, vue-book
   const product = await getProductFromDatabase(productId);
   const relatedProducts = await getRelatedProductsFromDatabase(productId);
   return {product, relatedProducts}
@@ -51,12 +51,23 @@ async function loadProducts(){
   ]
 }
 
+/**
+ * @param {string} productId
+ * 
+ * findメソッドは条件に一致した1つの値を取得する
+ */
 async function getProductFromDatabase(productId){
   const products = await loadProducts();
-  return products.find((product) => productId === product.id);
+  return products.find((product) => productId === product.id);  // 一致したもの -> 1つ
 }
 
+/**
+ * @param {string} productId
+ * 
+ * filterメソッドは条件に一致した複数の値を取得する
+ */
 async function getRelatedProductsFromDatabase(productId){
   const products = await loadProducts();
-  return products.filter((product)=> productId !== product.id);
+  return products.filter((product)=> productId !== product.id); // 不一致なもの -> 複数
 }
+
