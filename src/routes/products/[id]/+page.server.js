@@ -1,3 +1,5 @@
+import { readFile } from 'fs/promises';
+
 export async function load({params}){
   const productId = params.id;  // ex. react-book, angular-book, vue-book
   const product = await getProductFromDatabase(productId);
@@ -6,49 +8,8 @@ export async function load({params}){
 }
 
 async function loadProducts(){
-  return[
-    {
-      id:"svelte-book",
-      name: 'Svelte Guide',
-      price: 3500,
-      images:[
-        "https://github.com/svelte-book/sample-app/raw/main/static/svelte-book-1.png",
-        "https://github.com/svelte-book/sample-app/raw/main/static/svelte-book-2.png",
-        "https://github.com/svelte-book/sample-app/raw/main/static/svelte-book-3.png",
-      ]
-    },
-    {
-      id:"react-book",
-      name: 'React Guide',
-      price: 4500,
-      images:[
-        "https://github.com/svelte-book/sample-app/raw/main/static/react-book-1.png",
-        "https://github.com/svelte-book/sample-app/raw/main/static/react-book-2.png",
-        "https://github.com/svelte-book/sample-app/raw/main/static/react-book-3.png",
-      ]
-    },
-    {
-      id:"vue-book",
-      name: 'Vue Guide',
-      price: 5500,
-      images:[
-        "https://github.com/svelte-book/sample-app/raw/main/static/vue-book-1.png",
-        "https://github.com/svelte-book/sample-app/raw/main/static/vue-book-2.png",
-        "https://github.com/svelte-book/sample-app/raw/main/static/vue-book-3.png",
-      ]
-    },
-    {
-      id:"angular-book",
-      name: 'Angular Guide',
-      price: 6500,
-      images:[
-        "https://github.com/svelte-book/sample-app/raw/main/static/angular-book-1.png",
-        "https://github.com/svelte-book/sample-app/raw/main/static/angular-book-2.png",
-        "https://github.com/svelte-book/sample-app/raw/main/static/angular-book-3.png",
-      ]
-    },
-
-  ]
+  const content = await readFile('data/products.json', {encoding: 'utf-8'});
+  return JSON.parse(content);
 }
 
 /**
