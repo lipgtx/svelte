@@ -1,4 +1,15 @@
+import { addToCart } from '$lib/server/cart';
 import { readFile } from 'fs/promises';
+
+export const actions ={
+  default: async ({request}) => {
+    const data = await request.formData();
+    await addToCart(data.get('productId')); // ex react-book, angular-book, vue-book
+  }
+
+}
+
+
 
 export async function load({params}){
   const productId = params.id;  // ex. react-book, angular-book, vue-book
@@ -31,4 +42,5 @@ async function getRelatedProductsFromDatabase(productId){
   const products = await loadProducts();
   return products.filter((product)=> productId !== product.id); // 不一致なもの -> 複数
 }
+
 
