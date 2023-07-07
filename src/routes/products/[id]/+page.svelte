@@ -4,7 +4,7 @@
   import Slider from "./Slider.svelte";
 
   export let data;
-  $:({product, relatedProducts} = data);
+  $:({product, relatedProducts, cart} = data);
 
   let cart = [];
   function addToCart(productId){
