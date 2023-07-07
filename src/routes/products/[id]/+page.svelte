@@ -1,10 +1,16 @@
 <script>
 // @ts-nocheck
 
+  import {afterNatvigate, afterNavigate} from'$app/navigation';
   import Slider from "./Slider.svelte";
 
   export let data;
   $:({product, relatedProducts, cart} = data);
+  let recommendRequest = new Promise(() => {});
+
+  afterNavigate(()=>{
+    recommendRequest = fetch(`/api/recommend?id=${product.id}`).then((res)=>res.json());
+  });
 
   let cart = [];
   function addToCart(productId){
@@ -52,6 +58,21 @@
   </div>
 
   <fotter>
+    <h3>おすすめ商品</h3>
+    {#await recommendRequest}
+      <div>ロード中....</div>
+    {:then products}
+      <ul>
+        {#each products as product}
+          <li>
+            <a href="/products/{product.id}">{product.name}</a> - {product.price}円
+          </li>
+        {/each}
+      </ul>
+    {:catch}
+        <div>読み込みエラー</div>
+    {/await}
+
     <h3>関連商品</h3>
     <ul>
       {#each relatedProducts as product}

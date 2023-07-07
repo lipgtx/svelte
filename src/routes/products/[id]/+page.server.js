@@ -19,10 +19,6 @@ export const actions ={
 
 
 export async function load({params}){
-  // const productId = params.id;  // ex. react-book, angular-book, vue-book
-  // const product = await getProductFromDatabase(productId);
-  // const relatedProducts = await getRelatedProductsFromDatabase(productId);
-  // return {product, relatedProducts}
   const products = await loadProducts();
   const product = products.find((product) => product.id === params.id);
   const relatedProducts = products.filter((product) => product.id !== params.id);
