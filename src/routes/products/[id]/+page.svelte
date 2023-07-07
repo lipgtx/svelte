@@ -1,7 +1,7 @@
 <script>
 // @ts-nocheck
 
-  import {afterNatvigate, afterNavigate} from'$app/navigation';
+  import {afterNavigate} from'$app/navigation';
   import Slider from "./Slider.svelte";
 
   export let data;

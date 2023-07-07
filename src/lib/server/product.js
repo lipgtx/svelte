@@ -7,7 +7,7 @@ async function loadProducts(){
 }
 
 /**
- * products.jsonにあるデータから、テキトーに3つ選ぶ
+ * products.jsonにあるデータから、テキトーに1～3つ選ぶ
  * ただし、今選択？(baseId)されているものは除外される
  * 
  */
