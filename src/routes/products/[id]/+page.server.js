@@ -2,6 +2,12 @@
 import { addToCart, loadCart } from '$lib/server/cart';
 import { readFile } from 'fs/promises';
 
+/**
+ * +page.svelteに書かれているmethod="POST"をここで受ける
+ * actionsというのはお約束の名前らしい
+ * defaultという名前でrequestをいうパラメーターを受け取る
+ * 
+ */
 export const actions ={
   default: async ({request}) => {
     const data = await request.formData();
