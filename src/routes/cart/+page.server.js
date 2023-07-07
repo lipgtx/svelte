@@ -1,4 +1,4 @@
-import { addToCart, loadCart } from '$lib/server/cart';
+import { loadCart } from '$lib/server/cart';
 
 export async function load(){
   const cart = await loadCart();

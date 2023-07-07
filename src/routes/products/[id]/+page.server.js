@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { addToCart, loadCart } from '$lib/server/cart';
-import { readFile } from 'fs/promises';
+import { loadProducts } from '$lib/server/product.js';
 
 /**
  * +page.svelteに書かれているmethod="POST"をここで受ける
@@ -24,11 +24,6 @@ export async function load({params}){
   const relatedProducts = products.filter((product) => product.id !== params.id);
   const cart = await loadCart();
   return {product, relatedProducts, cart};
-}
-
-async function loadProducts(){
-  const content = await readFile('data/products.json', {encoding: 'utf-8'});
-  return JSON.parse(content);
 }
 
 /**
