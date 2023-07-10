@@ -1,9 +1,11 @@
 // @ts-nocheck
 import {readFile } from 'fs/promises';
+import { database } from '$lib/server/mopngodb';
+
 
 export async function loadProducts(){
-  const content = await readFile('data/products.json', {encoding:'utf-8'});
-  return JSON.parse(content);
+  const products = await database.collection("produxts").find();
+  return await produsts.toArray();
 }
 
 /**

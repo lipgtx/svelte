@@ -1,5 +1,6 @@
 [
   {
+    "_id":"svelte-book",
     "id":"svelte-book",
     "name": "Svelte Guide",
     "price": 3500,
@@ -10,6 +11,7 @@
     ]
   },
   {
+    "_id":"react-book",
     "id":"react-book",
     "name": "React Guide",
     "price": 4500,
@@ -20,6 +22,7 @@
     ]
   },
   {
+    "_id":"vue-book",
     "id":"vue-book",
     "name": "Vue Guide",
     "price": 5500,
@@ -30,6 +33,7 @@
     ]
   },
   {
+    "_id":"angular-book",
     "id":"angular-book",
     "name": "Angular Guide",
     "price": 6500,
