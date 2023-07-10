@@ -1,0 +1,13 @@
+MongoDB Atlas
+
+usename
+	svelte_ec
+
+password
+	e0vywPaZpewcFfQU
+
+
+Add your connection string into your application code
+	mongodb+srv://svelte_ec:e0vywPaZpewcFfQU@cluster0.nhk1lmu.mongodb.net/?retryWrites=true&w=majority
+
+
