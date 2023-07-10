@@ -1,11 +1,10 @@
 // @ts-nocheck
-import {readFile } from 'fs/promises';
 import { database } from '$lib/server/mopngodb';
 
 
 export async function loadProducts(){
-  const products = await database.collection("produxts").find();
-  return await produsts.toArray();
+  const products = await database.collection('products').find();
+  return await products.toArray();
 }
 
 /**
