@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { database } from '$lib/server/mopngodb';
+import { database } from '$lib/server/mongodb';
 
 
 export async function loadProducts(){
