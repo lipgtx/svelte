@@ -1,11 +1,11 @@
 // @ts-nocheck
 import { env } from "$env/dynamic/private";
 
-export async function sendPasswordlessUri(email, state, redirectUri){
-  const res = await fetch(`https://${enc.AUTH_DOMAIN}/passwordless/start`,{
+export async function sendPasswordlessLink(email, state, redirectUri){
+  const res = await fetch(`https://${env.AUTH0_DOMAIN}/passwordless/start`,{
     method: 'POST',
     headers:{
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     body: JSON.stringify({
       client_id:env.AUTH0_CLIENT_ID,
