@@ -13,3 +13,19 @@ export async function createSession(data){
   await database.collection("sessions").insertOne(session);
   return sessionId;
 }
+
+export async function findSession(sessionId){
+  const session = await database.collection("session").findOne({_id: sessionId});
+  if(!session){
+    return null;
+  }
+  if(session.expiresAt < Date.now()){
+    await deleteSession(session._id);
+    return null;
+  }
+  return session;
+}
+
+export async function deleteSession(sessionId){
+  await database.collection("session").deleteOne({_id: sessionId});
+}
