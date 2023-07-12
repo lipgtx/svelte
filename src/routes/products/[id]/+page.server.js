@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { addToCart, loadCart } from '$lib/server/cart';
+import { addToCart, loadCartItem } from '$lib/server/cart';
 import { loadProducts } from '$lib/server/product.js';
 
 /**
@@ -9,20 +9,22 @@ import { loadProducts } from '$lib/server/product.js';
  * 
  */
 export const actions ={
-  default: async ({request}) => {
-    const data = await request.formData();
-    await addToCart(data.get('productId')); // ex react-book, angular-book, vue-book
+  default: async ({locals, request}) => {
+    if(locals.currentUser){
+      const data = await request.formData();
+      await addToCart(locals.currentUser.userId, data.get("productId"));
+    }
   }
-
 }
 
-
-
-export async function load({params}){
-  const products = await loadProducts();
+export async function load({locals, params}){
   const product = products.find((product) => product.id === params.id);
   const relatedProducts = products.filter((product) => product.id !== params.id);
-  const cart = await loadCart();
+
+  let cart=[];
+  if(locals.currentUser){
+    cart = await loadCartItems(locals.currentUser.userId);
+  }
   return {product, relatedProducts, cart};
 }
 
